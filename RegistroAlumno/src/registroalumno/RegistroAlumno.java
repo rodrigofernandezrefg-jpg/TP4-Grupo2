@@ -17,12 +17,12 @@ public class RegistroAlumno {
     public static void main(String[] args) {
         // TODO code application logic here
         Alumno a = new Alumno (10, "Castro", "Maximiliano");
-        Alumno a1 = new Alumno (10, "Kjellfrid", "Bjerkelli");
-        Alumno a2 = new Alumno (10, "Fernandez", "Rodrigo");
-        Alumno a3 = new Alumno (10, "Barros", "Edgardo");
-        Alumno a4 = new Alumno (10, "Carrizo", "Anna");
-        Alumno a5 = new Alumno (10, "Domene", "Cora");
-        Alumno a6 = new Alumno (10, "Gimenez", "Pablo");
+        Alumno a1 = new Alumno (11, "Kjellfrid", "Bjerkelli");
+        Alumno a2 = new Alumno (12, "Fernandez", "Rodrigo");
+        Alumno a3 = new Alumno (13, "Barros", "Edgardo");
+        Alumno a4 = new Alumno (14, "Carrizo", "Anna");
+        Alumno a5 = new Alumno (15, "Domene", "Cora");
+        Alumno a6 = new Alumno (16, "Gimenez", "Pablo");
         Materia m1 = new Materia(1, "Matematica 1", 1);
         Materia m2 = new Materia (2, "Laboratorio 1", 1);
         Materia m3= new Materia (3, "Web 2", 1);
