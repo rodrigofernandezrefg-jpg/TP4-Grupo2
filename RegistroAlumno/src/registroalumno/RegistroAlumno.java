@@ -7,7 +7,7 @@ package registroalumno;
 
 /**
  *
- * @author Valentin Barros
+ * @author Valentin Barros Fernandez Rodrigo
  */
 public class RegistroAlumno {
 
