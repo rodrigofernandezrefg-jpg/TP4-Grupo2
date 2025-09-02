@@ -17,7 +17,7 @@ public class RegistroAlumno {
     public static void main(String[] args) {
         // TODO code application logic here
         Alumno a = new Alumno (10, "Castro", "Maximiliano");
-        Alumno a1 = new Alumno (11, "Kjellfrid", "Bjerkelli");
+        Alumno a1 = new Alumno (11, "Kjellfrid", "Valentina");
         Alumno a2 = new Alumno (12, "Fernandez", "Rodrigo");
         Alumno a3 = new Alumno (13, "Barros", "Edgardo");
         Alumno a4 = new Alumno (14, "Carrizo", "Anna");
