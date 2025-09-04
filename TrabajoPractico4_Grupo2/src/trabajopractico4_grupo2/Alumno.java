@@ -9,7 +9,7 @@ public class Alumno {
     private String nombre;
     private HashSet<Materia> materias;
 
-    public Alumno(int legajo, String apellido, String nombre)
+    public Alumno(int legajo, String apellido, String nombre){
         this.legajo = legajo;
         this.apellido = apellido;
         this.nombre = nombre;
