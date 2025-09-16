@@ -137,6 +137,7 @@
         <Component class="javax.swing.JTextField" name="jTFLegajo">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFLegajoActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFLegajoKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLApellido">
@@ -151,6 +152,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFApellido">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFApellidoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLNombre">
           <Properties>
@@ -164,6 +168,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFNombre">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNombreKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBGuardar">
           <Properties>
@@ -172,6 +179,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBGuardarMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBGuardarActionPerformed"/>
           </Events>
         </Component>
@@ -181,6 +189,9 @@
               <Image iconType="3" name="/Imagenes/nueva-cuenta.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAgregarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBSalir">
           <Properties>

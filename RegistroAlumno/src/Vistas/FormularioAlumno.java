@@ -1,9 +1,14 @@
-                                        /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Vistas;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import registroalumno.Alumno;
 
 /**
  *
@@ -55,16 +60,38 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                 jTFLegajoActionPerformed(evt);
             }
         });
+        jTFLegajo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFLegajoKeyReleased(evt);
+            }
+        });
 
         jLApellido.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLApellido.setForeground(new java.awt.Color(0, 102, 255));
         jLApellido.setText("Apellido");
 
+        jTFApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFApellidoKeyReleased(evt);
+            }
+        });
+
         jLNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLNombre.setForeground(new java.awt.Color(0, 102, 255));
         jLNombre.setText("Nombre");
 
+        jTFNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFNombreKeyReleased(evt);
+            }
+        });
+
         jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salvar.png"))); // NOI18N
+        jBGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBGuardarMouseClicked(evt);
+            }
+        });
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGuardarActionPerformed(evt);
@@ -72,6 +99,11 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         });
 
         jBAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nueva-cuenta.png"))); // NOI18N
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +188,23 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         // TODO add your handling code here:
+        try {
+            int legajo = Integer.parseInt(jTFLegajo.getText());
+            String nombre = jTFNombre.getText();
+            String apellido = jTFApellido.getText();
+            if (nombre.isEmpty() || apellido.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
+                return;
+            }
+            Alumno a = new Alumno(legajo, apellido, nombre);
+            Menu.agregarAlumno(a);
+            JOptionPane.showMessageDialog(this, "Alumno cargado con exito");
+        }catch(NumberFormatException ex){
+            System.out.println(ex.getLocalizedMessage());
+            JOptionPane.showMessageDialog(null, "Numero no valido" +ex.getMessage());
+        }
+
+
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jTFLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFLegajoActionPerformed
@@ -166,6 +215,51 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_jBAgregarActionPerformed
+
+    private void jBGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBGuardarMouseClicked
+
+    }//GEN-LAST:event_jBGuardarMouseClicked
+
+    private void jTFLegajoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLegajoKeyReleased
+        // TODO add your handling code here:
+        Pattern patron=Pattern.compile("[0-9_.]+");
+       String nro = this.jTFLegajo.getText();
+       Matcher m= patron.matcher(nro);
+       if(!m.matches() && nro.length()>0){
+           JOptionPane.showMessageDialog(this, "No es un numero");
+           this.jTFLegajo.setText(nro.substring(0, nro.length()-1));
+           this.jTFLegajo.requestFocus();
+       }
+    }//GEN-LAST:event_jTFLegajoKeyReleased
+
+    private void jTFApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidoKeyReleased
+        // TODO add your handling code here:
+        Pattern patron=Pattern.compile("[a-zA-Z_ \\t\\n\\x0B\\f\\r]+");
+       String nro = this.jTFApellido.getText();
+       Matcher m= patron.matcher(nro);
+       if(!m.matches() && nro.length()>0){
+           JOptionPane.showMessageDialog(this, "No es una letra");
+           this.jTFApellido.setText(nro.substring(0, nro.length()-1));
+           this.jTFApellido.requestFocus();
+       }
+    }//GEN-LAST:event_jTFApellidoKeyReleased
+
+    private void jTFNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreKeyReleased
+        // TODO add your handling code here:
+        Pattern patron=Pattern.compile("[a-zA-Z_ \\t\\n\\x0B\\f\\r]+");
+       String nro = this.jTFNombre.getText();
+       Matcher m= patron.matcher(nro);
+       if(!m.matches() && nro.length()>0){
+           JOptionPane.showMessageDialog(this, "No es una letra");
+           this.jTFNombre.setText(nro.substring(0, nro.length()-1));
+           this.jTFNombre.requestFocus();
+       }
+    }//GEN-LAST:event_jTFNombreKeyReleased
 
     /**
      * @param args the command line arguments
@@ -200,6 +294,12 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                 new FormularioAlumno().setVisible(true);
             }
         });
+    }
+
+    public void limpiarCampos() {
+        jTFLegajo.setText("");
+        jTFNombre.setText("");
+        jTFApellido.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
