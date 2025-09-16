@@ -113,6 +113,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTFCodigo">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFCodigoKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLNombre">
       <Properties>
@@ -128,6 +131,7 @@
     <Component class="javax.swing.JTextField" name="jTFMateria">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFMateriaActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFMateriaKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLA&#xf1;o">
@@ -144,6 +148,7 @@
     <Component class="javax.swing.JTextField" name="jTFA&#xf1;o">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFA&#xf1;oActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFA&#xf1;oKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBNuevo">
@@ -152,6 +157,9 @@
           <Image iconType="3" name="/Imagenes/registro.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBNuevoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBGuardar">
       <Properties>
@@ -159,6 +167,9 @@
           <Image iconType="3" name="/Imagenes/salvar.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBGuardarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBCerrar">
       <Properties>

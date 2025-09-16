@@ -5,6 +5,11 @@
  */
 package Vistas;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import registroalumno.Materia;
+
 /**
  *
  * @author Valentin Barros
@@ -49,6 +54,12 @@ public class FormularioDeMaterias extends javax.swing.JInternalFrame {
         jLCodigo.setForeground(new java.awt.Color(0, 102, 204));
         jLCodigo.setText("Codigo de Materia");
 
+        jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFCodigoKeyReleased(evt);
+            }
+        });
+
         jLNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLNombre.setForeground(new java.awt.Color(0, 102, 204));
         jLNombre.setText("Nombre de la Materia");
@@ -56,6 +67,11 @@ public class FormularioDeMaterias extends javax.swing.JInternalFrame {
         jTFMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFMateriaActionPerformed(evt);
+            }
+        });
+        jTFMateria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFMateriaKeyReleased(evt);
             }
         });
 
@@ -68,10 +84,25 @@ public class FormularioDeMaterias extends javax.swing.JInternalFrame {
                 jTFAñoActionPerformed(evt);
             }
         });
+        jTFAño.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFAñoKeyReleased(evt);
+            }
+        });
 
         jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/registro.png"))); // NOI18N
+        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNuevoActionPerformed(evt);
+            }
+        });
 
         jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salvar.png"))); // NOI18N
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jBCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
         jBCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +182,68 @@ public class FormularioDeMaterias extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jBCerrarActionPerformed
 
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        // TODO add your handling code here:
+        try {
+            int codigo = Integer.parseInt(jTFCodigo.getText());
+            String nombre = jTFMateria.getText();
+            int año = Integer.parseInt(jTFAño.getText());
+            if(nombre.isEmpty()){
+                JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
+                return;
+            }
+            Materia m = new Materia(codigo, nombre, año);
+            Menu.agregarMateria(m);
+            JOptionPane.showMessageDialog(this, "La materia fue cargada con exito");
+        }catch(NumberFormatException ex){
+            System.out.println(ex.getLocalizedMessage());
+            JOptionPane.showMessageDialog(null, "Numero no valido" +ex.getMessage());
+        }
+
+
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_jBNuevoActionPerformed
+
+    private void jTFCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoKeyReleased
+        // TODO add your handling code here:
+        Pattern patron=Pattern.compile("[0-9_.]+");
+       String nro = this.jTFCodigo.getText();
+       Matcher m= patron.matcher(nro);
+       if(!m.matches() && nro.length()>0){
+           JOptionPane.showMessageDialog(this, "No es un numero");
+           this.jTFCodigo.setText(nro.substring(0, nro.length()-1));
+           this.jTFCodigo.requestFocus();
+       }
+    }//GEN-LAST:event_jTFCodigoKeyReleased
+
+    private void jTFAñoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAñoKeyReleased
+        // TODO add your handling code here:
+        Pattern patron=Pattern.compile("[0-9_.]+");
+       String nro = this.jTFAño.getText();
+       Matcher m= patron.matcher(nro);
+       if(!m.matches() && nro.length()>0){
+           JOptionPane.showMessageDialog(this, "No es un numero");
+           this.jTFAño.setText(nro.substring(0, nro.length()-1));
+           this.jTFAño.requestFocus();
+       }
+    }//GEN-LAST:event_jTFAñoKeyReleased
+
+    private void jTFMateriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFMateriaKeyReleased
+        // TODO add your handling code here:
+        Pattern patron=Pattern.compile("[a-zA-Z_ \\t\\n\\x0B\\f\\r]+");
+       String nro = this.jTFMateria.getText();
+       Matcher m= patron.matcher(nro);
+       if(!m.matches() && nro.length()>0){
+           JOptionPane.showMessageDialog(this, "No es una letra");
+           this.jTFMateria.setText(nro.substring(0, nro.length()-1));
+           this.jTFMateria.requestFocus();
+       }
+    }//GEN-LAST:event_jTFMateriaKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -185,6 +278,13 @@ public class FormularioDeMaterias extends javax.swing.JInternalFrame {
             }
         });
     }
+
+    public void limpiarCampos() {
+        jTFCodigo.setText("");
+        jTFMateria.setText("");
+        jTFAño.setText("");
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCerrar;
     private javax.swing.JButton jBGuardar;
