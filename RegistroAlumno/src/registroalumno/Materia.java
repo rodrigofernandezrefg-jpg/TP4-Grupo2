@@ -68,4 +68,11 @@ public class Materia {
     public int hashCode(){
         return Objects.hash(idMateria);
     }
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
+    
+    
 }
