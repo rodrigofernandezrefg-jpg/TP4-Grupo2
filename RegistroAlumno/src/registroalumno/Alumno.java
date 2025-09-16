@@ -54,7 +54,7 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public HashSet<Materia> getMaterias() {
+    public LinkedHashSet<Materia> getMaterias() {
         return materias;
     }
 
@@ -81,5 +81,12 @@ public class Alumno {
             System.out.println(m.getNombre());
         }
     }
+
+    @Override
+    public String toString() {
+        return nombre +" " +apellido;
+    }
+    
+    
     
 }
