@@ -5,12 +5,20 @@
  */
 package Vistas;
 
+import java.util.HashSet;
+import registroalumno.Alumno;
+import registroalumno.Materia;
+
 /**
  *
  * @author Valentin Barros
  */
 public class Menu extends javax.swing.JFrame {
 
+    public static HashSet<Alumno> alumnos = new HashSet();
+    public static HashSet<Materia> materias = new HashSet();  
+
+   
     /**
      * Creates new form Menu
      */
@@ -18,6 +26,29 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
     }
 
+    public static HashSet<Alumno> getAlumnos() {
+        return alumnos;
+    }
+
+    public static void setAlumnos(HashSet<Alumno> alumnos) {
+        Menu.alumnos = alumnos;
+    }
+
+    public static HashSet<Materia> getMaterias() {
+        return materias;
+    }
+
+    public static void setMaterias(HashSet<Materia> materias) {
+        Menu.materias = materias;
+    }
+
+    public static void agregarAlumno(Alumno a){
+        alumnos.add(a);
+    }
+    
+    public static void agregarMateria(Materia m){
+        materias.add(m);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,15 +58,22 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jDPMenuPrincipal = new javax.swing.JDesktopPane();
         jMBMenu = new javax.swing.JMenuBar();
         jMAlumno = new javax.swing.JMenu();
         jMIAgregarAlumno = new javax.swing.JMenuItem();
+        jMIVerAlumno = new javax.swing.JMenuItem();
         jMMateria = new javax.swing.JMenu();
         jMIAgregarMateria = new javax.swing.JMenuItem();
+        jMIVerMaterias = new javax.swing.JMenuItem();
         jMRegistro = new javax.swing.JMenu();
         jMIAgregarRegistro = new javax.swing.JMenuItem();
+        jMIMateriasInscriptas = new javax.swing.JMenuItem();
         jMSalir = new javax.swing.JMenu();
+        jMISalir = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro");
@@ -63,6 +101,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMAlumno.add(jMIAgregarAlumno);
 
+        jMIVerAlumno.setText("Ver Alumnos");
+        jMIVerAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIVerAlumnoActionPerformed(evt);
+            }
+        });
+        jMAlumno.add(jMIVerAlumno);
+
         jMBMenu.add(jMAlumno);
 
         jMMateria.setText("Materia");
@@ -74,6 +120,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMMateria.add(jMIAgregarMateria);
+
+        jMIVerMaterias.setText("Ver Materias");
+        jMIVerMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIVerMateriasActionPerformed(evt);
+            }
+        });
+        jMMateria.add(jMIVerMaterias);
 
         jMBMenu.add(jMMateria);
 
@@ -87,6 +141,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMRegistro.add(jMIAgregarRegistro);
 
+        jMIMateriasInscriptas.setText("Materias Inscriptas");
+        jMIMateriasInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIMateriasInscriptasActionPerformed(evt);
+            }
+        });
+        jMRegistro.add(jMIMateriasInscriptas);
+
         jMBMenu.add(jMRegistro);
 
         jMSalir.setText("Salir");
@@ -95,6 +157,15 @@ public class Menu extends javax.swing.JFrame {
                 jMSalirActionPerformed(evt);
             }
         });
+
+        jMISalir.setText("Salir");
+        jMISalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMISalirActionPerformed(evt);
+            }
+        });
+        jMSalir.add(jMISalir);
+
         jMBMenu.add(jMSalir);
 
         setJMenuBar(jMBMenu);
@@ -148,6 +219,41 @@ public class Menu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMSalirActionPerformed
 
+    private void jMIVerAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVerAlumnoActionPerformed
+        // TODO add your handling code here:
+        jDPMenuPrincipal.removeAll();
+        jDPMenuPrincipal.repaint();
+        AlumnosInscriptos form = new AlumnosInscriptos();
+        form.setVisible(true);
+        jDPMenuPrincipal.add(form);
+        jDPMenuPrincipal.moveToFront(form);
+    }//GEN-LAST:event_jMIVerAlumnoActionPerformed
+
+    private void jMIVerMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVerMateriasActionPerformed
+        // TODO add your handling code here:
+        jDPMenuPrincipal.removeAll();
+        jDPMenuPrincipal.repaint();
+        MateriasExistentes form = new MateriasExistentes();
+        form.setVisible(true);
+        jDPMenuPrincipal.add(form);
+        jDPMenuPrincipal.moveToFront(form);
+    }//GEN-LAST:event_jMIVerMateriasActionPerformed
+
+    private void jMIMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIMateriasInscriptasActionPerformed
+        // TODO add your handling code here:
+        jDPMenuPrincipal.removeAll();
+        jDPMenuPrincipal.repaint();
+        MateriasInscriptas form = new MateriasInscriptas();
+        form.setVisible(true);
+        jDPMenuPrincipal.add(form);
+        jDPMenuPrincipal.moveToFront(form);
+    }//GEN-LAST:event_jMIMateriasInscriptasActionPerformed
+
+    private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jMISalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -190,8 +296,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIAgregarAlumno;
     private javax.swing.JMenuItem jMIAgregarMateria;
     private javax.swing.JMenuItem jMIAgregarRegistro;
+    private javax.swing.JMenuItem jMIMateriasInscriptas;
+    private javax.swing.JMenuItem jMISalir;
+    private javax.swing.JMenuItem jMIVerAlumno;
+    private javax.swing.JMenuItem jMIVerMaterias;
     private javax.swing.JMenu jMMateria;
     private javax.swing.JMenu jMRegistro;
     private javax.swing.JMenu jMSalir;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }
